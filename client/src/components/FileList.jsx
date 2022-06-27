@@ -3,31 +3,18 @@ import { Tooltip } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 import styles from "./FileList.module.scss";
 
 const FileList = () => {
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [current, setCurrent] = useState('')
-    const [folders, setFolders] = useState([])
-    const [files, setFiles] = useState([])
     const {id} = useParams()
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        setIsLoading(true)
-        const apiCall = async () => {
-            const url = `https://rtu-ceat.herokuapp.com/api/file/content/${id}`
-            const results = await axios.get(url)
-            setCurrent(results.data.current)
-            setFolders(results.data.folders)
-            setFiles(results.data.files)
-            setIsLoading(false)
-        }
-        apiCall();
-    },[id])
+    const {data, isFetching, error} = useFetch(`file/content/${id}`)
 
-    const folderList = folders.map((folder)=>(
+
+    const folderList = data?.folders.map((folder)=>(
         <article key={folder.id}  className={`col-3 col-lg-4 col-md-6 col-sm-12 ${styles.FolderContainer}`}>
             <button onClick={()=>navigate(`/file/${folder.id}`)}
                 className={styles.FolderBtn}
@@ -40,7 +27,7 @@ const FileList = () => {
         </article>
     ))
 
-    const fileList = files.map((file)=>(
+    const fileList = data?.files.map((file)=>(
         <article className={`col-3 col-lg-4 col-md-6 col-sm-12 ${styles.FileContainer}`} key={file.id}>
             <Tooltip title={file.name}>
                 <div className={styles.File}>
@@ -64,7 +51,7 @@ const FileList = () => {
         </article>
     ))
 
-    if(isLoading) return (
+    if(isFetching) return (
         <div style={{paddingTop:"32px"}}>
             <span>Loading...</span>
         </div>
@@ -76,10 +63,15 @@ const FileList = () => {
                 className={styles.BackBtn}
             >
                 <span className={styles.BackBtnIcon}><ArrowBack/></span>
-                {current && <span className={styles.BackBtnName}>{current.name}</span>}
+                {   
+                    data?.current && 
+                    <span className={styles.BackBtnName}>
+                        {data.current.name}
+                    </span>
+                }
             </button>
             {
-                (folders.length > 0) &&
+                (data?.folders.length > 0) &&
                 <div className="mt-4">
                     <span className={styles.GroupName}>FOLDERS</span>
                     <section className="row gap-2">
@@ -88,7 +80,7 @@ const FileList = () => {
                 </div>
             }
             {
-                (files.length > 0) &&
+                (data?.files.length > 0) &&
                 <div className="mt-4">
                     <span className={styles.GroupName}>FILES</span>
                     <section className="row gap-2">

@@ -41,6 +41,7 @@
     "@mui/material": "^5.8.2",
     "@react-three/drei": "^9.13.2",
     "@react-three/fiber": "^8.0.27",
+    "axios": "^0.27.2",
     "gsap": "^3.10.4",
     "react-router-dom": "^6.3.0",
     "three": "^0.141.0"

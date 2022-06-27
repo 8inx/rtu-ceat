@@ -1,0 +1,135 @@
+@use '../scss/variables';
+@use '../scss/mixins';
+
+.BackBtn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80px;
+    padding:0 8px;
+    border: none;
+    background-color: variables.$clr-white;
+    color: variables.$clr-red-orange;
+    cursor: pointer;
+
+    @include mixins.sm {
+        position: absolute;
+        top: 0;
+        height: 56px;
+        max-width: 280px;
+        z-index: 999;
+    }
+}
+
+.BackBtnIcon {
+    display: flex;
+    align-items: center;
+}
+
+.BackBtnName {
+    width: 100%;
+    margin-left: 8px;
+    white-space: nowrap;
+    font-size: variables.$base-font-size;
+    font-weight: variables.$fw-bold;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.FolderContainer {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.FolderBtn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    padding:0 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(variables.$clr-black, .2);
+    color: variables.$clr-darkGray;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.FolderIcon {
+    display: flex;
+    align-items: center;
+}
+
+.FolderName {
+    width: 100%;
+    margin-left: 8px;
+    white-space: nowrap;
+    font-size: variables.$base-font-size;
+    font-weight: variables.$fw-medium;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.FileContainer {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.File {
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid rgba(variables.$clr-black, .2);
+}
+
+.FileMedia {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 4px 4px 0 0;
+}
+
+.FileThumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.FileBody {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 44px;
+    padding: 0 8px;
+}
+
+.FileIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.FileName {
+    width: 100%;
+    margin-left: 8px;
+    white-space: nowrap;
+    font-size: variables.$base-font-size;
+    font-weight: variables.$fw-medium;
+    color: variables.$clr-darkGray;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.GroupName {
+    font-size: variables.$font-size-small;
+    font-weight: variables.$fw-bold;
+    line-height: 1.8;
+    color: variables.$clr-darkGray;
+}

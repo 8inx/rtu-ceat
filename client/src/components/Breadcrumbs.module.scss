@@ -1,0 +1,54 @@
+@use '../scss/variables';
+@use '../scss/mixins';
+
+
+.Container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.sm {
+        height: 120px;
+    }
+}
+
+.Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Title {
+    font-size: variables.$font-size-large * 2.5;
+    font-weight: variables.$fw-extraBold;
+    letter-spacing: 2px;
+    color: variables.$clr-white;
+}
+
+.Body {
+    color: variables.$clr-white;
+}
+
+.Link {
+    color: variables.$clr-orange;
+    text-decoration: none;
+}
+
+.Media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -999;
+}
+
+.Image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,31 @@
+
+/* Media queries */
+/* Screen sizes */
+$screen-sm-max: 480px;
+$screen-md-max: 768px;
+$screen-lg-max: 1200px;
+$screen-xl-min: 1200px;
+
+@mixin sm {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (max-width: #{$screen-lg-max}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}

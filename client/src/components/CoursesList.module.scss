@@ -1,0 +1,52 @@
+@use '../scss/variables';
+@use '../scss/mixins';
+
+
+.Container {
+    margin: 48px 0;
+}
+
+.CardBtn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: variables.$base-corner-radius;
+    background-color: transparent;
+    color: variables.$clr-red-orange;
+    font-weight: variables.$fw-medium;
+    box-shadow: 0px 0px 4px rgba(variables.$clr-black, 0.2);
+    transition: all 250ms ease-in;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(variables.$clr-blue, 0.2);
+    }
+
+    &:disabled {
+        pointer-events: none;
+        color: variables.$clr-darkGray;
+    }
+
+    @include mixins.md {
+        box-shadow: none;
+    }
+}
+
+.BtnIcon {
+    border-radius: variables.$base-corner-radius;
+}
+
+.BtnText {
+    margin-left: 12px;
+    font-size: variables.$font-size-large;
+    text-align: left;
+}
+
+.BtnIconRight {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}

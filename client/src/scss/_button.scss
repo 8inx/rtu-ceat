@@ -1,0 +1,53 @@
+
+$colors: (
+    "primary": $clr-red-orange,
+    "secondary": $clr-blue
+);
+
+
+@mixin btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 1em 1.333em;
+    border: none;
+    border-radius: 0;
+    font-size: $base-font-size;
+    font-weight: $fw-bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn {
+    @include btn;
+}
+
+
+@each $key, $color in $colors {
+    .btn-#{$key} {
+        color: $clr-white;
+        background-color: $color;
+
+        &:hover {
+            background-color: lighten($color, 5%);
+        }
+    }
+
+    .btn-outlined-#{key} {
+        color: $color;
+        background-color: transparent;
+        border: 1px solid $color;
+
+        &:hover {
+            color: $clr-white;
+            background-color: $color;
+        }
+    }
+}
+
+.btn.btn-small {
+    font-size: $font-size-small;
+}
+
+.btn.btn-large {
+    font-size: $font-size-large;
+}

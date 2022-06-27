@@ -1,0 +1,133 @@
+@use '../scss/variables';
+@use '../scss/mixins';
+
+.Container {
+    width: 100%;
+    height: calc(100vh - 80px);
+
+    @include mixins.sm {
+        height: calc(100vh - 56px);
+    }
+}
+
+
+.SliderWrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Slider {
+    display: flex;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.Slide {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    @include mixins.md {
+        justify-content: center;
+    }
+}
+
+.Content {
+    margin-left: 80px;
+    max-width: 500px;
+
+    @include mixins.md {
+        margin-left: 0;
+        margin-bottom: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.ContentTitle {
+    font-size: variables.$base-font-size * 4;
+    font-weight: variables.$fw-bold;
+    color: variables.$clr-white;
+
+    @include mixins.sm {
+        font-size: variables.$base-font-size * 2.5;
+    }
+}
+
+.ContentBody {
+    font-size: variables.$base-font-size * 1.5;
+    color: variables.$clr-white;
+
+    @include mixins.md {
+        text-align: center;
+    }
+
+    @include mixins.sm {
+        font-size: variables.$base-font-size * 1.1;
+    }
+}
+
+
+.SideBtn {
+    position: absolute;
+    bottom:50%;
+    transform: translateY(50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:0;
+    border-radius: 50%;
+    background-color: transparent;
+    color: variables.$clr-red-orange;
+    transition: all 250ms ease-out;
+    cursor: pointer;
+    z-index: 10;
+
+    &:hover {
+        color: variables.$clr-white;
+        background-color: rgba(variables.$clr-white, 0.1);
+    }
+    svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    @include mixins.md {
+        bottom: 16px;
+        transform: translateY(0);
+    }
+}
+
+.SideBtn.Left {
+    left: 16px;
+}
+
+.SideBtn.Right {
+    right: 16px;
+}
+
+.MediaContainer {
+    position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom:0;
+    overflow-x: hidden;
+    z-index: -999;
+}
+
+.MediaWrapper {
+    position: absolute;
+    width: 100%;
+    min-width: 800px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

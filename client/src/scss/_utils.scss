@@ -1,0 +1,99 @@
+@use "sass:math";
+
+/* margin and paddings */
+$sides:('t':top, 'r':right, 'b':bottom, 'l': left);
+
+@for $size from 1 to 5 {
+    .m-#{$size} {
+        margin: #{$size * 8}px;
+    }
+
+    .p-#{$size} {
+        margin: #{$size * 8}px;
+    }
+
+    @each $pref, $side in $sides {
+        .m#{$pref}-#{$size} {
+            margin-#{$side}: #{$size * 8}px;
+        }
+
+        .p#{$pref}-#{$size} {
+            margin-#{$side}: #{$size * 8}px;
+        }
+    }
+}
+
+/* grid layout */
+$grid-columns: 12;
+$grid-gaps: (
+    "0" : 0,
+    "1" : 8px,
+    "2" : 16px,
+    "3" : 24px
+);
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@for $i from 1 through $grid-columns {
+    .col-#{$i} {
+        flex-grow: 0;
+        width: math.div($i * 100%, $grid-columns);
+        box-sizing: border-box;
+    }
+}
+
+@include xl {
+    @for $i from 1 through $grid-columns {
+        .col-xl-#{$i} {
+            flex-grow: 0;
+            width: math.div($i * 100%, $grid-columns);
+            box-sizing: border-box;
+        }
+    }
+}
+
+@include lg {
+    @for $i from 1 through $grid-columns {
+        .col-lg-#{$i} {
+            flex-grow: 0;
+            width: math.div($i * 100%, $grid-columns);
+            box-sizing: border-box;
+        }
+    }
+}
+
+
+@include md {
+    @for $i from 1 through $grid-columns {
+        .col-md-#{$i} {
+            flex-grow: 0;
+            width: math.div($i * 100%, $grid-columns);
+            box-sizing: border-box;
+        }
+    }
+}
+
+@include sm {
+    @for $i from 1 through $grid-columns {
+        .col-sm-#{$i} {
+            flex-grow: 0;
+            width: math.div($i * 100%, $grid-columns);
+            box-sizing: border-box;
+        }
+    }
+}
+
+
+@each $key, $val in $grid-gaps {
+    .gap-#{$key} > * {
+        padding: $val;
+    }
+
+    .gap-#{$key} {
+        margin-left: -$val;
+        margin-right: -$val;
+    }
+}

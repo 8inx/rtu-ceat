@@ -7,7 +7,7 @@ import styles from "./FileList.module.scss";
 
 const FileList = () => {
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState('')
     const [folders, setFolders] = useState([])
     const [files, setFiles] = useState([])
@@ -15,6 +15,7 @@ const FileList = () => {
     const navigate = useNavigate()
 
     useEffect(()=>{
+        setIsLoading(true)
         const apiCall = async () => {
             const url = `https://rtu-ceat.herokuapp.com/api/file/content/${id}`
             const results = await axios.get(url)

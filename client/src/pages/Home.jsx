@@ -8,7 +8,7 @@ const Home = () => {
             <Navbar/>
             <div className="page-wrapper">
                 <Slider/>
-                <CoursesList/>
+                <CoursesList header="true"/>
             </div>
         </>
     )

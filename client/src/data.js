@@ -7,7 +7,7 @@ export const courses = [
         disabled: true,
     },
     {
-        id: 2,
+        id: "1bsJ0eyJEcfcLVKIugr_v-zUxoObZYNZx",
         name: "Civil Engineering",
         disabled: false,
     },
@@ -17,7 +17,7 @@ export const courses = [
         disabled: true,
     },
     {
-        id: 4,
+        id: "1o6CR--Ohs23pGOe8xspO5aNb4xIn3ZIe",
         name: "Electrical Engineering",
         disabled: false,
     },
@@ -32,7 +32,7 @@ export const courses = [
         disabled: true,
     },
     {
-        id: 7,
+        id: "1kthehpwppEaijzJ_PEc5xKmNRUX_S7yF",
         name: "Industrial Engineering",
         disabled: false,
     },

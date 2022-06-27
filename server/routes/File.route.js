@@ -28,6 +28,11 @@ router.get("/content/:id", googleService, checkCourseId, async (req, res)=>{
             includeItemsFromAllDrives: true,
         })
 
+        const current = await req.drive.files.get({
+            fileId: fileId,
+            fields: 'id, name'
+        }).then(c=>c.data)
+
         let folders = results.data.files.filter(
             (folder)=> folder.mimeType === "application/vnd.google-apps.folder"
         )
@@ -41,7 +46,7 @@ router.get("/content/:id", googleService, checkCourseId, async (req, res)=>{
             files = [...files, ...req.common.files]
         }
 
-        res.status(200).json({folders, files})
+        res.status(200).json({current, folders, files})
 
     } catch (err) {
         res.status(500).json(err)

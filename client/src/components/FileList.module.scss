@@ -3,7 +3,7 @@
 
 .BackBtn {
     display: flex;
-    flex-direction: flex-start;
+    justify-content: flex-start;
     align-items: center;
     height: 80px;
     padding:0 8px;
@@ -37,6 +37,7 @@
     overflow: hidden;
 }
 
+
 .FolderContainer {
     padding-bottom: 8px;
     padding-top: 8px;
@@ -44,7 +45,7 @@
 
 .FolderBtn {
     display: flex;
-    flex-direction: flex-start;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 44px;
@@ -67,6 +68,60 @@
     white-space: nowrap;
     font-size: variables.$base-font-size;
     font-weight: variables.$fw-medium;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.FileContainer {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.File {
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid rgba(variables.$clr-black, .2);
+}
+
+.FileMedia {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 4px 4px 0 0;
+}
+
+.FileThumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.FileBody {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 44px;
+    padding: 0 8px;
+}
+
+.FileIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.FileName {
+    width: 100%;
+    margin-left: 8px;
+    white-space: nowrap;
+    font-size: variables.$base-font-size;
+    font-weight: variables.$fw-medium;
+    color: variables.$clr-darkGray;
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;

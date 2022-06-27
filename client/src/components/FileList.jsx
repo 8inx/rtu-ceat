@@ -6,6 +6,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./FileList.module.scss";
 
 const FileList = () => {
+
+    const [isLoading, setIsLoading] = useState(true)
     const [current, setCurrent] = useState('')
     const [folders, setFolders] = useState([])
     const [files, setFiles] = useState([])
@@ -19,6 +21,7 @@ const FileList = () => {
             setCurrent(results.data.current)
             setFolders(results.data.folders)
             setFiles(results.data.files)
+            setIsLoading(false)
         }
         apiCall();
     },[id])
@@ -37,12 +40,34 @@ const FileList = () => {
     ))
 
     const fileList = files.map((file)=>(
-        <button key={file.id}>
-            {file.name}
-        </button>
+        <article className={`col-3 col-lg-4 col-md-6 col-sm-12 ${styles.FileContainer}`} key={file.id}>
+            <Tooltip title={file.name}>
+                <div className={styles.File}>
+                    <div className={styles.FileMedia}>
+                        <img className={styles.FileThumbnail} 
+                            src={file.thumbnailLink} 
+                            alt={`thumbnail of ${file.name}`} 
+                            referrerPolicy="no-referrer"
+                        />
+                    </div>
+                    <div className={styles.FileBody}>
+                        <img className={styles.FileIcon} 
+                            src={file.iconLink} 
+                            alt={`icon of ${file.name}`}
+                            referrerPolicy="no-referrer"
+                        />
+                            <span className={styles.FileName}>{file.name}</span>
+                    </div>
+                </div>
+            </Tooltip>
+        </article>
     ))
 
-    console.log(files)
+    if(isLoading) return (
+        <div style={{paddingTop:"32px"}}>
+            <span>Loading...</span>
+        </div>
+    )
 
     return (
         <section>
@@ -54,7 +79,7 @@ const FileList = () => {
             </button>
             {
                 (folders.length > 0) &&
-                <div>
+                <div className="mt-4">
                     <span className={styles.GroupName}>FOLDERS</span>
                     <section className="row gap-2">
                         {folderList}
@@ -63,7 +88,7 @@ const FileList = () => {
             }
             {
                 (files.length > 0) &&
-                <div>
+                <div className="mt-4">
                     <span className={styles.GroupName}>FILES</span>
                     <section className="row gap-2">
                         {fileList}

@@ -23,7 +23,7 @@ router.get("/content/:id", googleService, checkCourseId, async (req, res)=>{
         const fileId = req.params.id;
         const results = await req.drive.files.list({
             q: `'${fileId}' in parents`,
-            fields: 'nextPageToken, files(id, name, mimeType, size, fullFileExtension, hasThumbnail, thumbnailLink)',
+            fields: 'nextPageToken, files(id, name, mimeType, size, fullFileExtension, hasThumbnail, thumbnailLink, iconLink)',
             supportsAllDrives: true,
             includeItemsFromAllDrives: true,
         })

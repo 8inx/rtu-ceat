@@ -1,10 +1,10 @@
 import { ArrowBack, Folder } from "@mui/icons-material";
-import { Tooltip } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { CircularProgress, Tooltip } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import docImage from "../images/document.png"
 import useFetch from "../hooks/useFetch";
 import styles from "./FileList.module.scss";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const FileList = () => {
 
@@ -12,10 +12,8 @@ const FileList = () => {
     const navigate = useNavigate()
 
     const {data, isFetching, error} = useFetch(`file/content/${id}`)
-
-
     const folderList = data?.folders.map((folder)=>(
-        <article key={folder.id}  className={`col-3 col-lg-4 col-md-6 col-sm-12 ${styles.FolderContainer}`}>
+        <article key={folder.id}  className={`col-3 col-lg-3 col-md-6 col-sm-12 ${styles.FolderContainer}`}>
             <button onClick={()=>navigate(`/file/${folder.id}`)}
                 className={styles.FolderBtn}
             >
@@ -28,17 +26,22 @@ const FileList = () => {
     ))
 
     const fileList = data?.files.map((file)=>(
-        <article className={`col-3 col-lg-4 col-md-6 col-sm-12 ${styles.FileContainer}`} key={file.id}>
+        <article className={`col-3 col-lg-3 col-md-6 col-sm-12 ${styles.FileContainer}`} key={file.id}>
             <Tooltip title={file.name}>
                 <div className={styles.File}>
                     <div className={styles.FileMedia}>
-                        <img className={styles.FileThumbnail} 
-                            src={file.thumbnailLink} 
-                            alt={`thumbnail of ${file.name}`} 
+                        <LazyLoadImage className={styles.FileThumbnail} 
+                            data-thumbnail={file.hasThumbnail}
+                            src={ 
+                                file.hasThumbnail? 
+                                `https://rtu-ceat.herokuapp.com/api/media/thumbnail/${file.thumbnailLink}`: docImage
+                            }
                             referrerPolicy="no-referrer"
+                            crossOrigin="anonymous"
                         />
                     </div>
                     <div className={styles.FileBody}>
+                        
                         <img className={styles.FileIcon} 
                             src={file.iconLink} 
                             alt={`icon of ${file.name}`}
@@ -52,13 +55,13 @@ const FileList = () => {
     ))
 
     if(isFetching) return (
-        <div style={{paddingTop:"32px"}}>
-            <span>Loading...</span>
+        <div style={{display:"flex", width:"100%", height: "80vh"}}>
+            <span style={{margin:"auto"}}><CircularProgress color="primary"/></span>
         </div>
     )
 
     return (
-        <section>
+        <section className={styles.Container}>
             <button onClick={()=>navigate(-1)}
                 className={styles.BackBtn}
             >
@@ -72,7 +75,7 @@ const FileList = () => {
             </button>
             {
                 (data?.folders.length > 0) &&
-                <div className="mt-4">
+                <div className="mt-2">
                     <span className={styles.GroupName}>FOLDERS</span>
                     <section className="row gap-2">
                         {folderList}
@@ -87,6 +90,12 @@ const FileList = () => {
                         {fileList}
                     </section>
                 </div>
+            }
+            {
+                (data?.folders.length === 0) && (data?.files.length === 0) &&
+                <section>
+                    <p style={{lineHeight:"2.3", textAlign:"center"}}>No Items Found</p>
+                </section>
             }
         </section>
     )

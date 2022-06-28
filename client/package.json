@@ -43,6 +43,7 @@
     "@react-three/fiber": "^8.0.27",
     "axios": "^0.27.2",
     "gsap": "^3.10.4",
+    "react-lazy-load-image-component": "^1.5.4",
     "react-router-dom": "^6.3.0",
     "three": "^0.141.0"
   }

@@ -9,7 +9,7 @@ router.get("/info/:id", googleService, async (req, res)=>{
         const fileId = req.params.id;
         const results = await req.drive.files.get({
             fileId: fileId,
-            fields: 'id, name, parents, mimeType, size, fullFileExtension, hasThumbnail, thumbnailLink, webContentLink, webViewLink, imageMediaMetadata, videoMediaMetadata'
+            fields: 'id, name, parents, mimeType, size, fullFileExtension, hasThumbnail, thumbnailLink, webContentLink, webViewLink, imageMediaMetadata, videoMediaMetadata, iconLink, exportLinks'
         })
         res.status(200).json(results.data)
     } catch (err) {

@@ -28,7 +28,7 @@ router.get("/content/:id", googleService, checkCourseId, async (req, res)=>{
             includeItemsFromAllDrives: true,
         })
 
-        const current = await req.drive.files.get({
+        let current = await req.drive.files.get({
             fileId: fileId,
             fields: 'id, name'
         }).then(c=>c.data)

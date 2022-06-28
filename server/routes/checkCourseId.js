@@ -16,7 +16,7 @@ const checkCourseId = (async (req, res, next)=>{
 
         const data = await req.drive.files.list({
             q: `'${rootFolderId}' in parents`,
-            fields: 'nextPageToken, files(id, name, mimeType, size, fullFileExtension, hasThumbnail, thumbnailLink)',
+            fields: 'nextPageToken, files(id, name, mimeType, size, fullFileExtension, hasThumbnail, thumbnailLink, iconLink)',
             supportsAllDrives: true,
             includeItemsFromAllDrives: true,
         })
